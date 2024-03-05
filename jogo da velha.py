@@ -21,6 +21,13 @@ def condition_vertical(tabuleiro):
         elif tabuleiro[0][coluna] == tabuleiro[1][coluna] == tabuleiro[2][coluna] == 'o':
             return 2
 
+def condition_diagonal(tabuleiro):
+    if (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'x')or (tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'x'):
+        return 1
+    elif (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'o')or (tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'o'):
+        return 2
+
+
 
 
 roundi = 1
@@ -40,8 +47,10 @@ while roundi < 10:
         elif escolha == 7 or escolha == 8 or escolha == 9:
             matriz[2][escolha - 7] = 'x'
 
-        if condition_horizontal(matriz) == 1 or condition_vertical(matriz) == 1:
+        if condition_horizontal(matriz) == 1 or condition_vertical(matriz) == 1 or condition_diagonal(matriz) == 1:
             print("Player 1 ganhou!")
+            print()
+            imprime_tabuleiro(matriz)
             break
         roundi += 1
     else:
@@ -59,8 +68,10 @@ while roundi < 10:
         elif escolha == 7 or escolha == 8 or escolha == 9:
             matriz[2][escolha - 7] = 'o'
 
-        if condition_horizontal(matriz) == 2 or condition_vertical(matriz) == 2:
+        if condition_horizontal(matriz) == 2 or condition_vertical(matriz) == 2 or condition_diagonal(matriz) == 2:
             print("Player 2 ganhou!")
+            print()
+            imprime_tabuleiro(matriz)
             break
         roundi += 1
 
