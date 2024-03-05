@@ -21,13 +21,24 @@ def condition_vertical(tabuleiro):
         elif tabuleiro[0][coluna] == tabuleiro[1][coluna] == tabuleiro[2][coluna] == 'o':
             return 2
 
+
 def condition_diagonal(tabuleiro):
-    if (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'x')or (tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'x'):
+    if (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'x') or (
+            tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'x'):
         return 1
-    elif (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'o')or (tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'o'):
+    elif (tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] == 'o') or (
+            tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] == 'o'):
         return 2
 
 
+def empate(tabuleiro, roun):
+    if roun == 9:
+        if condition_diagonal(tabuleiro) != 1 and condition_diagonal(tabuleiro) != 2 and condition_horizontal(
+                tabuleiro) != 1 and condition_horizontal(tabuleiro) != 2 and condition_vertical(
+                tabuleiro) != 1 and condition_vertical(tabuleiro) != 2:
+            return True
+        else:
+            return False
 
 
 roundi = 1
@@ -52,6 +63,12 @@ while roundi < 10:
             print()
             imprime_tabuleiro(matriz)
             break
+
+        if empate(matriz,roundi):
+            print("Empate!")
+            print()
+            break
+
         roundi += 1
     else:
         print("Player 2 joga")
@@ -74,5 +91,3 @@ while roundi < 10:
             imprime_tabuleiro(matriz)
             break
         roundi += 1
-
-
